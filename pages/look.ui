@@ -1,0 +1,113 @@
+<template>
+  <ui-page top="0">
+    <ui-view>
+      <ui-view class="content_list">
+        <ui-row height="46" align="center" border-top  border-bottom space-top="5">
+          <ui-col vertical-align="middle"  border-left border-right>
+            <ui-view class="title">编号</ui-view>
+          </ui-col>
+          <ui-col vertical-align="middle"  border-right>
+            <ui-view class="title">名称</ui-view>
+          </ui-col>
+          <ui-col width="70" vertical-align="middle"  border-right>
+            <ui-view class="title">使用</ui-view>
+          </ui-col>
+        </ui-row>
+        <ui-view class="demo-content">
+          <ui-row height="46" align="center" border-bottom ui:for="(item, index) in items">
+            <ui-col vertical-align="middle"  border-left border-right>
+              <ui-view class="title">{{item.serialnumber}}</ui-view>
+            </ui-col>
+            <ui-col vertical-align="middle"  border-right>
+              <ui-view class="title">{{item.name}}</ui-view>
+            </ui-col>
+            <ui-col width="70" vertical-align="middle"  border-right>
+              <ui-view class="title" ui:if="{{item.used_status === 0}}" style="color:#5bac9d;">未使用</ui-view>
+              <ui-view class="title" ui:if="{{item.used_status === 1}}" style="color:#e2c961;">正在使用</ui-view>
+              <ui-view class="title" ui:if="{{item.used_status === 2}}" style="color:#cb4126;">异常</ui-view>
+              <ui-view class="title" ui:if="{{item.used_status === 3}}" style="color:#a2a3a3;">离线</ui-view>
+            </ui-col>
+          </ui-row>
+        </ui-view>
+      </ui-view>
+    </ui-view>
+  </ui-page>
+</template>
+
+<script>
+  export default {
+    config: {
+      navigationStyle:"custom"
+    },
+    data () {
+      return {
+        url: ui.getApp().globalData.href,
+        items: [],
+        pageIndex: 1,
+        total: 0
+      }
+    },
+    methods: {
+      init(){
+        var that = this
+        ui.request({
+          url: this.url + 'getPageList', //仅为示例，并非真实的接口地址
+          data: {
+            index: this.pageIndex,
+            size: 50
+          },
+          success: function (res) {
+            if(200 !== res.data.status_code){
+              return false
+            }
+            that.items = []
+            for(var i = 0;i < res.data.data.length;i++){
+               that.items.push(res.data.data[i])  
+            }
+          }
+        })
+      }
+    },
+    mounted () {
+      this.init();
+      setInterval(() => {
+        this.init();
+      }, 5000);
+    } 
+  }
+
+</script>
+
+<style lang="less">
+*{
+  box-sizing: border-box;
+}
+.ui-page-content{
+  background: #fff;
+  width: auto;
+  padding: 0 10rpx;
+  .demo-content {
+  .radio {
+    display: block;
+    margin-left: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    &:not(:first-of-type) {
+      .mix-1px(1, 0, 0, 0, #d4d4d4);
+    }
+    .ui-radio {
+      margin-right: 6px;
+    }
+  }
+  .paybox{
+    text-align:left;
+    margin:0;
+    padding:0
+  }
+  .title{
+    color:#333;
+    font-size:13px;
+  }
+}
+}
+</style>
