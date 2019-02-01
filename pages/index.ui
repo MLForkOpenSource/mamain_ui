@@ -1,13 +1,7 @@
-<<<<<<< HEAD
 <template> 
   <ui-page top="0">
     <ui-scroll-view scroll-y height="{{height}}" pull-down="{{ pullDown }}" enable-reach-bottom-load ="{{loadMore}}" on-load-more="{{ handleLoadMore }}">
     
-=======
-<template>
-  <ui-page top="0">
-    <ui-scroll-view scroll-y height="{{height}}" pull-down="{{ pullDown }}" enable-reach-bottom-load ="{{loadMore}}" on-load-more="{{ handleLoadMore }}">
->>>>>>> aea8f69d6f0b9af006e7d8726da494289e8466ac
       <ui-view class="win" align="center">
         <ui-button type="primary" full-width="false" bindtap="forcedUnlocking">强制开锁</ui-button>
         <ui-button type="primary" full-width="false" bindtap="hqOpen">换气开启</ui-button>

@@ -2,13 +2,14 @@
 export default {
   config: {
     "pages": [
-      "pages/index"
+      "pages/index",
+      "pages/look"
     ],
     "theme": {
       "theme-color": "#3399ff"
     },
     "window": {
-      "scrollType": "div",
+      "scrollType": "body",
       "navigationBarBackgroundColor":"#ffffff",
       "navigationBarTextStyle":"black",
       "navigationBarBorderColor":"rgba(231, 231, 231, 0.6)"
