@@ -19,7 +19,18 @@ export default {
       "selectedColor": "#39f",
       "borderColor": "rgba(231, 231, 231, 0.6)",
       "backgroundColor": "#fff",
-      "list": []
+      "list": [
+        {
+          "pagePath": "pages/index",
+          "iconName": "home",
+          "text": "首页"
+        },
+        {
+          "pagePath": "pages/look",
+          "iconName": "user",
+          "text": "监控"
+        }
+      ]
     },
     "networkBaseUrl":""
   },
