@@ -188,7 +188,7 @@
           url: this.url + 'getPageList', //仅为示例，并非真实的接口地址
           data: {
             index: this.pageIndex,
-            size: 10
+            size: 50
           },
           success: function (res) {
             // console.log(JSON.stringify(res.data))
